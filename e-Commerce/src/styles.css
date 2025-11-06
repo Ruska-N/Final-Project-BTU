@@ -1,1 +1,100 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Montserrat:wght@500;700&display=swap');
+
+
+:root {
+    --color-black: #121212;
+    /* (Wix --color_15) For headings & buttons */
+    --color-white: #FFFFFF;
+    --color-text: #212121;
+    /* Main body text */
+    --color-text-light: #757575;
+    /* (Wix --color_14) For descriptions */
+    --color-background: #ffffff;
+    --color-border: #c7c7c7;
+    /* (Wix --color_13) Main borders */
+    --color-border-light: #e8e6e6;
+    /* (Wix --color_12) Light borders/backgrounds */
+    --color-accent: #121212;
+    /* Main button color */
+    --color-accent-hover: #757575;
+    /* Button hover color */
+
+    /* Site Typography */
+    --font-main: 'Lato', sans-serif;
+    /* Use for all <p> and general text */
+    --font-headings: 'Montserrat', sans-serif;
+    /* Use for all <h1>, <h2>, etc. */
+
+    /* Site Sizing */
+    --header-height: 90px;
+}
+
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    font-family: var(--font-main);
+    color: var(--color-text);
+    background-color: var(--color-background);
+    line-height: 1.6;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    font-family: var(--font-headings);
+    font-weight: 700;
+    color: var(--color-black);
+    line-height: 1.2;
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: 47px;
+}
+
+h2 {
+    font-size: 32px;
+}
+
+h3 {
+    font-size: 24px;
+}
+
+h4 {
+    font-size: 18px;
+}
+
+p {
+    font-family: var(--font-main);
+    color: var(--color-text);
+    margin-bottom: 16px;
+    font-size: 16px;
+}
+
+a {
+    color: var(--color-black);
+    text-decoration: none;
+    transition: color 0.2s ease;
+    font-weight: bold;
+}
+
+a:hover {
+    color: var(--color-text-light);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
