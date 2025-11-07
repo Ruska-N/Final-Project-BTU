@@ -1,0 +1,29 @@
+.product-details-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.product-details-container header {
+    width: 890px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.product-details-container header .right-side {
+    width: 140px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.product-details-container header .right-side .active {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.product-details-container header .right-side span {
+    font-size: 17px;
+}

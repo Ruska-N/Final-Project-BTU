@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { ShopPageComponent } from './pages/shop-page/shop-page.component';
+import { ProductDetailsPageComponent } from './pages/product-details-page/product-details-page.component';
 
 export const routes: Routes = [
   {
@@ -8,7 +9,8 @@ export const routes: Routes = [
     title: 'Tote Shop | Home',
   },
   {
-    path: '**',
-    redirectTo: '',
+    path: 'detail',
+    component: ProductDetailsPageComponent,
+    title: 'Product Detail',
   },
 ];
