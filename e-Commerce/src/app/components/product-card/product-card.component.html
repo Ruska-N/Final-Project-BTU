@@ -1,1 +1,32 @@
-<p>product-card works!</p>
+<div class="product-card">
+  <div class="image-container">
+    <img
+      class="product-image default-image"
+      [src]="product.image_url[0]"
+      [alt]="product.name"
+    />
+
+    @if (product.image_url[1]) {
+      <img
+        class="product-image hover-image"
+        [src]="product.image_url[1]"
+        [alt]="product.name + ' print version'"
+      />
+    }
+
+    @if (product.sale_price) {
+      <span class="sale-badge">Sale</span>
+    }
+  </div>
+
+  <p class="product-name">{{ product.name }}</p>
+  <hr class="divider" />
+  <div class="price-container">
+    @if (product.sale_price) {
+      <span class="sale-price">{{ product.sale_price | currency }}</span>
+      <span class="original-price">{{ product.price | currency }}</span>
+    } @else {
+      <span class="product-price">{{ product.price | currency }}</span>
+    }
+  </div>
+</div>
