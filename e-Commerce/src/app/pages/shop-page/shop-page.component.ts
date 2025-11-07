@@ -18,7 +18,6 @@ export class ShopPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.productService.getProducts().subscribe((data) => {
-      console.log('Данные получены из сервиса:', data);
 
       this.products = data;
     });
