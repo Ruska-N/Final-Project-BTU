@@ -21,7 +21,8 @@
     display: flex;
     align-items: center;
     gap: 8px;
-    font-size: 14px;
+    font-size: 17px;
+    font-weight: bold;
 }
 
 .breadcrumbs a {
