@@ -17,4 +17,10 @@ export class ProductService {
       .get<{ products: Product[] }>(this.productsUrl)
       .pipe(map((response) => response.products));
   }
+
+  getProductById(id: number): Observable<Product | undefined> {
+    return this.getProducts().pipe(
+      map((products) => products.find((p) => p.id === id))
+    );
+  }
 }

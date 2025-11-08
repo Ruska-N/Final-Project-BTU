@@ -9,8 +9,12 @@ export const routes: Routes = [
     title: 'Tote Shop | Home',
   },
   {
-    path: 'detail',
+    path: 'product/:id',
     component: ProductDetailsPageComponent,
-    title: 'Product Detail',
+    title: 'Product Details',
+  },
+  {
+    path: '**',
+    redirectTo: '',
   },
 ];
