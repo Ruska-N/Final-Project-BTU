@@ -43,7 +43,6 @@
 
 .subscribe-section {
     max-width: 600px;
-    margin: 0 auto;
     padding: 0px 12px;
 }
 
@@ -53,7 +52,6 @@
     font-size: 14px;
     margin-bottom: 20px;
     font-weight: lighter;
-    text-align: center;
 }
 
 .input-wrapper {
