@@ -1,1 +1,113 @@
-<p>contact-page works!</p>
+<div class="contact-container">
+  <div class="contact-header">
+    <h1>Contact</h1>
+    <p>You're welcome to contact us with any inquiry</p>
+    <p class="p-contacts">
+      Tel: 123-456-7890 <span> | </span> info&#64;mysite.com
+    </p>
+  </div>
+
+  <div class="contact-body">
+    <div class="form-container">
+      <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" novalidate>
+        <div class="form-field">
+          <label for="firstName">First name *</label>
+          <input
+            id="firstName"
+            type="text"
+            formControlName="firstName"
+            [class.invalid]="submitted && firstName?.invalid"
+          />
+          <div
+            class="error-message"
+            *ngIf="submitted && firstName?.errors?.['required']"
+          >
+            <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+              <path
+                fill-rule="evenodd"
+                d="M11.5,3 C16.187,3 20,6.813 20,11.5 C20,16.187 16.187,20 11.5,20 C6.813,20 3,16.187 3,11.5 C3,6.813 6.813,3 11.5,3 Z M11.5,4 C7.364,4 4,7.364 4,11.5 C4,15.636 7.364,19 11.5,19 C15.636,19 19,15.636 19,11.5 C19,7.364 15.636,4 11.5,4 Z M12,14 L12,15 L11,15 L11,14 L12,14 Z M12,8 L12,13 L11,13 L11,8 L12,8 Z"
+              ></path>
+            </svg>
+            <span>Enter a first name.</span>
+          </div>
+        </div>
+
+        <div class="form-field">
+          <label for="lastName">Last name *</label>
+          <input
+            id="lastName"
+            type="text"
+            formControlName="lastName"
+            [class.invalid]="submitted && lastName?.invalid"
+          />
+          <div
+            class="error-message"
+            *ngIf="submitted && lastName?.errors?.['required']"
+          >
+            <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+              <path
+                fill-rule="evenodd"
+                d="M11.5,3 C16.187,3 20,6.813 20,11.5 C20,16.187 16.187,20 11.5,20 C6.813,20 3,16.187 3,11.5 C3,6.813 6.813,3 11.5,3 Z M11.5,4 C7.364,4 4,7.364 4,11.5 C4,15.636 7.364,19 11.5,19 C15.636,19 19,15.636 19,11.5 C19,7.364 15.636,4 11.5,4 Z M12,14 L12,15 L11,15 L11,14 L12,14 Z M12,8 L12,13 L11,13 L11,8 L12,8 Z"
+              ></path>
+            </svg>
+            <span>Enter a last name.</span>
+          </div>
+        </div>
+
+        <div class="form-field">
+          <label for="email">Email *</label>
+          <input
+            id="email"
+            type="email"
+            formControlName="email"
+            [class.invalid]="submitted && email?.invalid"
+          />
+          <div class="error-message" *ngIf="submitted && email?.invalid">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+              <path
+                fill-rule="evenodd"
+                d="M11.5,3 C16.187,3 20,6.813 20,11.5 C20,16.187 16.187,20 11.5,20 C6.813,20 3,16.187 3,11.5 C3,6.813 6.813,3 11.5,3 Z M11.5,4 C7.364,4 4,7.364 4,11.5 C4,15.636 7.364,19 11.5,19 C15.636,19 19,15.636 19,11.5 C19,7.364 15.636,4 11.5,4 Z M12,14 L12,15 L11,15 L11,14 L12,14 Z M12,8 L12,13 L11,13 L11,8 L12,8 Z"
+              ></path>
+            </svg>
+            <span *ngIf="email?.errors?.['required']"
+              >Enter an email address.</span
+            >
+            <span *ngIf="email?.errors?.['email']"
+              >Enter an email address like example&#64;mysite.com.</span
+            >
+          </div>
+        </div>
+
+        <div class="form-field">
+          <label for="phone">Phone</label>
+          <input id="phone" type="tel" formControlName="phone" />
+        </div>
+
+        <div class="form-field">
+          <label for="message">Message *</label>
+          <textarea
+            id="message"
+            rows="5"
+            formControlName="message"
+            [class.invalid]="submitted && message?.invalid"
+          ></textarea>
+          <div
+            class="error-message"
+            *ngIf="submitted && message?.errors?.['required']"
+          >
+            <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+              <path
+                fill-rule="evenodd"
+                d="M11.5,3 C16.187,3 20,6.813 20,11.5 C20,16.187 16.187,20 11.5,20 C6.813,20 3,16.187 3,11.5 C3,6.813 6.813,3 11.5,3 Z M11.5,4 C7.364,4 4,7.364 4,11.5 C4,15.636 7.364,19 11.5,19 C15.636,19 19,15.636 19,11.5 C19,7.364 15.636,4 11.5,4 Z M12,14 L12,15 L11,15 L11,14 L12,14 Z M12,8 L12,13 L11,13 L11,8 L12,8 Z"
+              ></path>
+            </svg>
+            <span>Enter a message.</span>
+          </div>
+        </div>
+        <div class="button-container">
+          <button type="submit" class="submit-button">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
