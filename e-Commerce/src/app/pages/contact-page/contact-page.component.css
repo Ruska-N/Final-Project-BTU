@@ -53,7 +53,7 @@
 .form-field textarea {
     width: 100%;
     padding: 10px;
-    border: 1px solid var(--color-border);
+    border: 1px solid var(--color-black);
     background-color: transparent;
     font-size: 16px;
     outline: none;
@@ -62,6 +62,78 @@
 .form-field input.invalid,
 .form-field textarea.invalid {
     border-color: #ff5c5c;
+}
+
+
+
+.phone-input-container {
+    display: flex;
+    border: 1px solid var(--color-black);
+}
+
+.country-selector {
+    position: relative;
+    cursor: pointer;
+    border: none;
+}
+
+.selected-country {
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    height: 100%;
+    gap: 5px;
+
+}
+
+.flag-icon {
+    width: 24px;
+    object-fit: contain;
+}
+
+.globe-icon {
+    width: 24px;
+    height: 24px;
+}
+
+.arrow-icon {
+    width: 20px;
+    height: 20px;
+}
+
+.country-dropdown {
+    position: absolute;
+    top: calc(100% + 2px);
+    left: 0;
+    background-color: white;
+    border: 1px solid var(--color-border);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+    max-height: 200px;
+    overflow-y: auto;
+    width: 300px;
+}
+
+.country-item {
+    display: flex;
+    align-items: center;
+    padding: 8px 12px;
+    cursor: pointer;
+    gap: 10px;
+    font-family: var(--font-main);
+    font-size: 14px;
+    font-style: normal;
+}
+
+.country-item:hover {
+    background-color: #f0f0f0;
+}
+
+.phone-input-container input#phone {
+    flex-grow: 1;
+    border: none;
+    outline: none;
+    width: auto;
 }
 
 .error-message {
