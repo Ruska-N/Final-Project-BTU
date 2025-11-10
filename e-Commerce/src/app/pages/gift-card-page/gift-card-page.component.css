@@ -80,9 +80,10 @@
 }
 
 .amount-button.active {
-    background-color: var(--color-black);
-    color: var(--color-white);
-    border-color: var(--color-black);
+    color: var(--color-black);
+    border: 1px solid rgb(10, 117, 178);
+    ;
+    background-color: rgba(10, 117, 178, 0.1)
 }
 
 .quantity-input {
@@ -125,7 +126,9 @@
 }
 
 .recipient-type-button.active {
-    border: 2px solid var(--color-black);
+    border: 1px solid rgb(10, 117, 178);
+    ;
+    background-color: rgba(10, 117, 178, 0.1)
 }
 
 .input-container {
