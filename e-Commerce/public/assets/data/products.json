@@ -2,37 +2,39 @@
   "products": [
     {
       "id": 1,
-      "name": "I'm Product",
+      "name": "I'm a product",
       "price": 15.0,
       "image_url": [
-        "src/assets/images/leavesOnYellowBg.jpg",
-        "src/assets/images/leavesOnYellowBgPrint.jpg"
+        "assets/images/leavesOnYellowBg.jpg",
+        "assets/images/leavesOnYellowBgPrint.jpg"
       ],
       "description": "I'm a product description. I'm a great place to add more details about your product such as sizing, material, care instructions and cleaning instructions.",
       "sku": "0001",
       "colors": ["Yellow"],
-      "quantity_in_stock": 10
+      "quantity_in_stock": 10,
+      "isTopSeller": true
     },
     {
       "id": 2,
-      "name": "I'm Product",
+      "name": "I'm a product",
       "price": 15.0,
       "image_url": [
-        "src/assets/images/whiteCats.jpg",
-        "src/assets/images/whiteCatsPrint.jpg"
+        "assets/images/whiteCats.jpg",
+        "assets/images/whiteCatsPrint.jpg"
       ],
       "description": "I'm a product description. I'm a great place to add more details about your product such as sizing, material, care instructions and cleaning instructions.",
       "sku": "0002",
       "colors": ["Pink"],
-      "quantity_in_stock": 10
+      "quantity_in_stock": 10,
+      "isTopSeller": true
     },
     {
       "id": 3,
-      "name": "I'm Product",
+      "name": "I'm a product",
       "price": 15.0,
       "image_url": [
-        "src/assets/images/swimmingGirl.jpg",
-        "src/assets/images/swimmingGirlPrint.jpg"
+        "assets/images/swimmingGirl.jpg",
+        "assets/images/swimmingGirlPrint.jpg"
       ],
       "description": "I'm a product description. I'm a great place to add more details about your product such as sizing, material, care instructions and cleaning instructions.",
       "sku": "0003",
@@ -41,37 +43,39 @@
     },
     {
       "id": 4,
-      "name": "I'm Product",
+      "name": "I'm a product",
       "price": 15.0,
       "image_url": [
-        "src/assets/images/girlWithTiger.jpg",
-        "src/assets/images/girlWithTigerPrint.jpg"
+        "assets/images/girlWithTiger.jpg",
+        "assets/images/girlWithTigerPrint.jpg"
       ],
       "description": "I'm a product description. I'm a great place to add more details about your product such as sizing, material, care instructions and cleaning instructions.",
       "sku": "0004",
       "colors": ["Purple"],
-      "quantity_in_stock": 10
+      "quantity_in_stock": 10,
+      "isTopSeller": true
     },
     {
       "id": 5,
-      "name": "I'm Product",
+      "name": "I'm a product",
       "price": 15.0,
       "image_url": [
-        "src/assets/images/banana.jpg",
-        "src/assets/images/bananaPrint.jpg"
+        "assets/images/banana.jpg",
+        "assets/images/bananaPrint.jpg"
       ],
       "description": "I'm a product description. I'm a great place to add more details about your product such as sizing, material, care instructions and cleaning instructions.",
       "sku": "0005",
       "colors": ["Orange"],
-      "quantity_in_stock": 10
+      "quantity_in_stock": 10,
+      "isTopSeller": true
     },
     {
       "id": 6,
-      "name": "I'm Product",
+      "name": "I'm a product",
       "price": 15.0,
       "image_url": [
-        "src/assets/images/abstractHandPaint.jpg",
-        "src/assets/images/abstractHandPaintPrint.jpg"
+        "assets/images/abstractHandPaint.jpg",
+        "assets/images/abstractHandPaintPrint.jpg"
       ],
       "description": "I'm a product description. I'm a great place to add more details about your product such as sizing, material, care instructions and cleaning instructions.",
       "sku": "0006",
@@ -80,12 +84,12 @@
     },
     {
       "id": 7,
-      "name": "I'm Product",
+      "name": "I'm a product",
       "price": 15.0,
       "sale_price": 14.25,
       "image_url": [
-        "src/assets/images/cactiOnBlackBg.jpg",
-        "src/assets/images/cactiOnBlackBgPrint.jpg"
+        "assets/images/cactiOnBlackBg.jpg",
+        "assets/images/cactiOnBlackBgPrint.jpg"
       ],
       "description": "I'm a product description. I'm a great place to add more details about your product such as sizing, material, care instructions and cleaning instructions.",
       "sku": "0007",
@@ -94,11 +98,11 @@
     },
     {
       "id": 8,
-      "name": "I'm Product",
+      "name": "I'm a product",
       "price": 15.0,
       "image_url": [
-        "src/assets/images/blackDots.jpg",
-        "src/assets/images/blackDotsPrint.jpg"
+        "assets/images/blackDots.jpg",
+        "assets/images/blackDotsPrint.jpg"
       ],
       "description": "I'm a product description. I'm a great place to add more details about your product such as sizing, material, care instructions and cleaning instructions.",
       "sku": "0008",
@@ -107,11 +111,11 @@
     },
     {
       "id": 9,
-      "name": "I'm Product",
+      "name": "I'm a product",
       "price": 15.0,
       "image_url": [
-        "src/assets/images/abstractBlue.jpg",
-        "src/assets/images/abstractBluePrint.jpg"
+        "assets/images/abstractBlue.jpg",
+        "assets/images/abstractBluePrint.jpg"
       ],
       "description": "I'm a product description. I'm a great place to add more details about your product such as sizing, material, care instructions and cleaning instructions.",
       "sku": "0009",
@@ -120,11 +124,11 @@
     },
     {
       "id": 10,
-      "name": "I'm Product",
+      "name": "I'm a product",
       "price": 15.0,
       "image_url": [
-        "src/assets/images/handsOnGreenBg.jpg",
-        "src/assets/images/handsOnGreenBgPrint.jpg"
+        "assets/images/handsOnGreenBg.jpg",
+        "assets/images/handsOnGreenBgPrint.jpg"
       ],
       "description": "I'm a product description. I'm a great place to add more details about your product such as sizing, material, care instructions and cleaning instructions.",
       "sku": "0010",
@@ -133,12 +137,12 @@
     },
     {
       "id": 11,
-      "name": "I'm Product",
+      "name": "I'm a product",
       "price": 15.0,
       "image_url": [
-        "src/assets/images/lemonsOnPinkBg.jpg",
-        "src/assets/images/lemonsOnPinkBgPrint.jpg",
-        "src/assets/images/lemonsOnMintBg.jpg"
+        "assets/images/lemonsOnPinkBg.jpg",
+        "assets/images/lemonsOnPinkBgPrint.jpg",
+        "assets/images/lemonsOnMintBg.jpg"
       ],
       "description": "I'm a product description. I'm a great place to add more details about your product such as sizing, material, care instructions and cleaning instructions.",
       "sku": "0011",
@@ -147,17 +151,17 @@
     },
     {
       "id": 12,
-      "name": "I'm Product",
+      "name": "I'm a product",
       "price": 15.0,
       "image_url": [
-        "src/assets/images/abstractOrange.jpg",
-        "src/assets/images/abstractOrangePrint.jpg",
-        "src/assets/images/abstractPink.jpg"
+        "assets/images/abstractOrange.jpg",
+        "assets/images/abstractOrangePrint.jpg",
+        "assets/images/abstractPink.jpg"
       ],
       "description": "I'm a product description. I'm a great place to add more details about your product such as sizing, material, care instructions and cleaning instructions.",
       "sku": "0012",
       "colors": ["Orange", "Pink"],
       "quantity_in_stock": 10
     }
-]
+  ]
 }
