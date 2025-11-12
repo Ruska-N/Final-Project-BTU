@@ -1,1 +1,176 @@
-<p>gift-card-page works!</p>
+<div class="gift-card-wrapper">
+  <div class="image-column">
+    <img
+      src="https://static.wixstatic.com/media/e90a2a_c3de803545f340df9dd4aa88a72e0718~mv2.png/v1/fill/w_484,h_322,al_c,q_85,enc_auto/e90a2a_c3de803545f340df9dd4aa88a72e0718~mv2.png"
+      alt="eGift Card"
+    />
+  </div>
+
+  <div class="form-column">
+    <h1 class="title">eGift Card</h1>
+    <form [formGroup]="giftCardForm" (ngSubmit)="onSubmit()" novalidate>
+      <p class="price">{{ giftCardForm.get("amount")?.value | currency }}</p>
+      <p class="description">
+        You can't go wrong with a gift card. Choose an amount and write a
+        personalized message to make this gift your own.
+      </p>
+
+      <div class="form-group">
+        <label>Amount</label>
+        <div class="amount-selector">
+          @for(amount of amounts; track amount) {
+          <button
+            type="button"
+            class="amount-button"
+            [class.active]="giftCardForm.get('amount')?.value === amount"
+            (click)="selectAmount(amount)"
+          >
+            {{ amount | currency : "USD" : "symbol" : "1.0-0" }}
+          </button>
+          }
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Quantity</label>
+        <div class="quantity-input">
+          <button type="button" (click)="updateQuantity(-1)">
+            <svg
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              width="24"
+              height="24"
+              class="so9TU_7"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M20,12 L20,13 L5,13 L5,12 L20,12 Z"
+              ></path>
+            </svg>
+          </button>
+          <span>{{ giftCardForm.get("quantity")?.value }}</span>
+          <button type="button" (click)="updateQuantity(1)">
+            <svg
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              width="24"
+              height="24"
+              class="so9TU_7"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M13,5 L13,12 L20,12 L20,13 L13,13 L13,20 L12,20 L11.999,13 L5,13 L5,12 L12,12 L12,5 L13,5 Z"
+              ></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Who is the gift card for?</label>
+        <div class="recipient-type-selector">
+          <button
+            type="button"
+            class="recipient-type-button"
+            [class.active]="
+              giftCardForm.get('recipientType')?.value === 'forSomeoneElse'
+            "
+            (click)="selectRecipientType('forSomeoneElse')"
+          >
+            For someone else
+          </button>
+          <button
+            type="button"
+            class="recipient-type-button"
+            [class.active]="
+              giftCardForm.get('recipientType')?.value === 'forMyself'
+            "
+            (click)="selectRecipientType('forMyself')"
+          >
+            For myself
+          </button>
+        </div>
+      </div>
+
+      @if (giftCardForm.get('recipientType')?.value === 'forSomeoneElse') {
+      <div class="recipient-details">
+        <div class="form-group">
+          <label for="recipientEmail">Recipient email *</label>
+          <div class="input-container">
+            <input
+              id="recipientEmail"
+              type="email"
+              formControlName="recipientEmail"
+              class="form-input"
+              [class.invalid]="submitted && recipientEmail?.invalid"
+            />
+            @if (submitted && recipientEmail?.invalid) {
+            <div class="error-icon-container">
+         ა
+              <div class="error-message">
+                @if (recipientEmail?.errors?.['required']) { Enter an email
+                address } @if (recipientEmail?.errors?.['email']) { Enter a
+                valid email address, like example&#64;email.com }
+              </div>
+            </div>
+            }
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="recipientName">Recipient name</label>
+          <div class="input-container">
+            <input
+              id="recipientName"
+              type="text"
+              formControlName="recipientName"
+              class="form-input"
+              [class.invalid]="submitted && recipientName?.invalid"
+            />
+            @if (submitted && recipientName?.invalid) {
+            <div class="error-icon-container">
+              <svg
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                width="24"
+                height="24"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M11.5,3 C16.187,3 20,6.813 20,11.5 C20,16.187 16.187,20 11.5,20 C6.813,20 3,16.187 3,11.5 C3,6.813 6.813,3 11.5,3 Z M11.5,4 C7.364,4 4,7.364 4,11.5 C4,15.636 7.364,19 11.5,19 C15.636,19 19,15.636 19,11.5 C19,7.364 15.636,4 11.5,4 Z M12,14 L12,15 L11,15 L11,14 L12,14 Z M12,8 L12,13 L11,13 L11,8 L12,8 Z"
+                ></path>
+              </svg>
+              <div class="error-message">Please enter a name</div>
+            </div>
+            }
+          </div>
+        </div>
+      </div>
+      } @if(giftCardForm.get('recipientType')?.value === 'forSomeoneElse') {
+      <div class="form-group">
+        <label for="deliveryDate">Delivery date</label>
+        <input
+          id="deliveryDate"
+          type="date"
+          formControlName="deliveryDate"
+          class="form-input"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="message">Message</label>
+        <textarea
+          id="message"
+          formControlName="message"
+          rows="5"
+          class="form-input"
+        ></textarea>
+      </div>
+      }
+
+      <div class="button-group">
+        <button type="submit" class="add-to-cart-button">Add to Cart</button>
+        <button type="button" class="buy-now-button">Buy Now</button>
+      </div>
+    </form>
+  </div>
+</div>

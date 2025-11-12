@@ -1,1 +1,42 @@
-<p>product-card works!</p>
+<div class="product-card">
+  <div class="image-container" [routerLink]="['/product', product.id]">
+    <img
+      class="product-image default-image"
+      [src]="product.image_url[0]"
+      [alt]="product.name"
+    />
+
+    @if (product.image_url[1]) {
+    <img
+      class="product-image hover-image"
+      [src]="product.image_url[1]"
+      [alt]="product.name + ' print version'"
+    />
+    }
+
+    <div class="badge-container">
+      @if (product.isTopSeller) {
+      <span class="badge top-seller-badge">Top Seller</span>
+      } @else if (product.sale_price) {
+      <span class="badge sale-badge">Sale</span>
+      }
+    </div>
+  </div>
+
+  <div class="product-details" [routerLink]="['/product', product.id]">
+    <p class="product-name">{{ product.name }}</p>
+    <hr class="divider" />
+    <div class="price-container">
+      @if (product.sale_price) {
+      <span class="sale-price">{{ product.sale_price | currency }}</span>
+      <span class="original-price">{{ product.price | currency }}</span>
+      } @else {
+      <span class="product-price">{{ product.price | currency }}</span>
+      }
+    </div>
+  </div>
+
+  <button class="add-to-cart-button" (click)="onAddToCart($event)">
+    Add to Cart
+  </button>
+</div>

@@ -1,1 +1,185 @@
-<p>contact-page works!</p>
+<div class="contact-container">
+  <div class="contact-header">
+    <h1>Contact</h1>
+    <p>You're welcome to contact us with any inquiry</p>
+    <p class="p-contacts">
+      Tel: 123-456-7890 <span> | </span> info&#64;mysite.com
+    </p>
+  </div>
+
+  <div class="contact-body">
+    <div class="form-container">
+      <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" novalidate>
+        <div class="form-field">
+          <label for="firstName">First name *</label>
+          <input
+            id="firstName"
+            type="text"
+            formControlName="firstName"
+            [class.invalid]="submitted && firstName?.invalid"
+          />
+          <div
+            class="error-message"
+            *ngIf="submitted && firstName?.errors?.['required']"
+          >
+            <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+              <path
+                fill-rule="evenodd"
+                d="M11.5,3 C16.187,3 20,6.813 20,11.5 C20,16.187 16.187,20 11.5,20 C6.813,20 3,16.187 3,11.5 C3,6.813 6.813,3 11.5,3 Z M11.5,4 C7.364,4 4,7.364 4,11.5 C4,15.636 7.364,19 11.5,19 C15.636,19 19,15.636 19,11.5 C19,7.364 15.636,4 11.5,4 Z M12,14 L12,15 L11,15 L11,14 L12,14 Z M12,8 L12,13 L11,13 L11,8 L12,8 Z"
+              ></path>
+            </svg>
+            <span>Enter a first name.</span>
+          </div>
+        </div>
+
+        <div class="form-field">
+          <label for="lastName">Last name *</label>
+          <input
+            id="lastName"
+            type="text"
+            formControlName="lastName"
+            [class.invalid]="submitted && lastName?.invalid"
+          />
+          <div
+            class="error-message"
+            *ngIf="submitted && lastName?.errors?.['required']"
+          >
+            <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+              <path
+                fill-rule="evenodd"
+                d="M11.5,3 C16.187,3 20,6.813 20,11.5 C20,16.187 16.187,20 11.5,20 C6.813,20 3,16.187 3,11.5 C3,6.813 6.813,3 11.5,3 Z M11.5,4 C7.364,4 4,7.364 4,11.5 C4,15.636 7.364,19 11.5,19 C15.636,19 19,15.636 19,11.5 C19,7.364 15.636,4 11.5,4 Z M12,14 L12,15 L11,15 L11,14 L12,14 Z M12,8 L12,13 L11,13 L11,8 L12,8 Z"
+              ></path>
+            </svg>
+            <span>Enter a last name.</span>
+          </div>
+        </div>
+
+        <div class="form-field">
+          <label for="email">Email *</label>
+          <input
+            id="email"
+            type="email"
+            formControlName="email"
+            [class.invalid]="submitted && email?.invalid"
+          />
+          <div class="error-message" *ngIf="submitted && email?.invalid">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+              <path
+                fill-rule="evenodd"
+                d="M11.5,3 C16.187,3 20,6.813 20,11.5 C20,16.187 16.187,20 11.5,20 C6.813,20 3,16.187 3,11.5 C3,6.813 6.813,3 11.5,3 Z M11.5,4 C7.364,4 4,7.364 4,11.5 C4,15.636 7.364,19 11.5,19 C15.636,19 19,15.636 19,11.5 C19,7.364 15.636,4 11.5,4 Z M12,14 L12,15 L11,15 L11,14 L12,14 Z M12,8 L12,13 L11,13 L11,8 L12,8 Z"
+              ></path>
+            </svg>
+            <span *ngIf="email?.errors?.['required']"
+              >Enter an email address.</span
+            >
+            <span *ngIf="email?.errors?.['email']"
+              >Enter an email address like example&#64;mysite.com.</span
+            >
+          </div>
+        </div>
+
+        <div class="form-field">
+          <label for="phone">Phone</label>
+          <div class="phone-input-container">
+            <div class="country-selector">
+              <div class="selected-country" (click)="toggleDropdown()">
+                <img
+                  *ngIf="selectedCountry"
+                  [src]="selectedCountry.flagUrl"
+                  [alt]="selectedCountry.name"
+                  class="flag-icon"
+                />
+                <svg
+                  *ngIf="!selectedCountry"
+                  class="globe-icon"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  width="20"
+                  height="20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M11.5,19 C11.331,19 11.166,18.985 11,18.975 L11,16.5 C11,16.224 10.776,16 10.5,16 L9.5,16 C9.224,16 9,15.775 9,15.5 L9,12.5 C9,12.366 8.947,12.238 8.852,12.145 L4.804,8.14 C6.04,5.688 8.573,4 11.5,4 C12.76,4 13.946,4.315 14.989,4.866 L15,6.497 C15.001,6.631 14.949,6.757 14.855,6.853 C14.76,6.947 14.634,7 14.5,7 L12.339,7 C12.207,7 12.08,7.053 11.986,7.146 L10.146,8.983 C10.053,9.077 10,9.204 10,9.337 L10,10.5 C10,11.325 10.672,11.999 11.499,12 L15.293,12 L17,13.707 L17,16.582 C15.629,18.064 13.674,19 11.5,19 M4,11.5 C4,10.673 4.14,9.879 4.388,9.135 L8,12.709 L8,15.5 C8,16.327 8.673,17 9.5,17 L10,17 L10,18.849 C6.581,18.152 4,15.122 4,11.5 M19,11.5 C19,12.856 18.632,14.127 18,15.226 L18,13.5 C18,13.367 17.947,13.24 17.854,13.146 L15.854,11.146 C15.76,11.053 15.633,11 15.5,11 L11.5,11 C11.224,11 11,10.775 11,10.5 L11,9.544 L12.546,8 L14.5,8 C14.902,8 15.281,7.843 15.564,7.557 C15.848,7.271 16.003,6.892 16,6.49 L15.993,5.51 C17.814,6.879 19,9.051 19,11.5 M11.5,3 C6.813,3 3,6.813 3,11.5 C3,16.187 6.813,20 11.5,20 C16.187,20 20,16.187 20,11.5 C20,6.813 16.187,3 11.5,3"
+                  ></path>
+                </svg>
+                <svg
+                  class="arrow-icon"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                  width="20"
+                  height="20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M15.6478199,6.44528691 L10.3548199,11.7381801 L5.06181987,6.44518013 L5.76892665,5.73807335 L10.3548199,10.3231801 L14.9407131,5.73807335 L15.6478199,6.44528691 Z"
+                    transform="rotate(180 10.3548 8.7381)"
+                  ></path>
+                </svg>
+              </div>
+              <div class="country-dropdown" *ngIf="isDropdownOpen">
+                <div class="search-container">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    width="24"
+                    height="24"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M6.6108,14.3887 C5.5718,13.3497 4.9998,11.9687 4.9998,10.4997 C4.9998,9.0317 5.5718,7.6507 6.6108,6.6117 C7.6498,5.5727 9.0308,4.9997 10.4998,4.9997 C11.9688,4.9997 13.3498,5.5727 14.3888,6.6117 C15.4278,7.6507 15.9998,9.0317 15.9998,10.4997 C15.9998,11.9687 15.4278,13.3497 14.3888,14.3887 C13.3498,15.4277 11.9688,15.9997 10.4998,15.9997 C9.0308,15.9997 7.6498,15.4277 6.6108,14.3887 L6.6108,14.3887 Z M20.0028,19.2957 L15.4328,14.7247 C16.4438,13.5477 16.9998,12.0687 16.9998,10.4997 C16.9998,8.7637 16.3238,7.1317 15.0958,5.9047 C13.8688,4.6767 12.2358,3.9997 10.4998,3.9997 C8.7638,3.9997 7.1318,4.6767 5.9038,5.9047 C4.6758,7.1317 3.9998,8.7637 3.9998,10.4997 C3.9998,12.2367 4.6758,13.8677 5.9038,15.0957 C7.1318,16.3237 8.7638,16.9997 10.4998,16.9997 C12.0688,16.9997 13.5478,16.4437 14.7258,15.4317 L19.2958,20.0027 L20.0028,19.2957 Z"
+                    ></path>
+                  </svg>
+                  <input
+                    type="text"
+                    placeholder="Search"
+                    (input)="filterCountries($event)"
+                    (click)="$event.stopPropagation()"
+                    class="country-search"
+                  />
+                </div>
+                <div
+                  class="country-item"
+                  *ngFor="let country of filteredCountries"
+                  (click)="selectCountry(country); $event.stopPropagation()"
+                >
+                  <img
+                    [src]="country.flagUrl"
+                    [alt]="country.name"
+                    class="flag-icon"
+                  />
+                  <span>{{ country.name }} {{ country.code }}</span>
+                </div>
+              </div>
+            </div>
+            <input id="phone" type="tel" formControlName="phone" />
+          </div>
+        </div>
+
+        <div class="form-field">
+          <label for="message">Message *</label>
+          <textarea
+            id="message"
+            rows="5"
+            formControlName="message"
+            [class.invalid]="submitted && message?.invalid"
+          ></textarea>
+          <div
+            class="error-message"
+            *ngIf="submitted && message?.errors?.['required']"
+          >
+            <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+              <path
+                fill-rule="evenodd"
+                d="M11.5,3 C16.187,3 20,6.813 20,11.5 C20,16.187 16.187,20 11.5,20 C6.813,20 3,16.187 3,11.5 C3,6.813 6.813,3 11.5,3 Z M11.5,4 C7.364,4 4,7.364 4,11.5 C4,15.636 7.364,19 11.5,19 C15.636,19 19,15.636 19,11.5 C19,7.364 15.636,4 11.5,4 Z M12,14 L12,15 L11,15 L11,14 L12,14 Z M12,8 L12,13 L11,13 L11,8 L12,8 Z"
+              ></path>
+            </svg>
+            <span>Enter a message.</span>
+          </div>
+        </div>
+        <div class="button-container">
+          <button type="submit" class="submit-button">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,1 +1,99 @@
-<p>footer works!</p>
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-links-section">
+      <div class="link-group">
+        <a href="#">Shipping & Returns</a>
+        <a href="#">Store Policy</a>
+        <a href="#">Payment Methods</a>
+      </div>
+      <div class="link-group">
+        <span class="link-heading">Contact</span>
+        <span>Tel: 123-456-7890</span>
+        <a class="a-underline" href="mailto:{{ contactEmail }}">{{
+          contactEmail
+        }}</a>
+      </div>
+      <div class="link-group">
+        <a href="#">Facebook</a>
+        <a href="#">Instagram</a>
+        <a href="#">Pinterest</a>
+      </div>
+    </div>
+
+    <div class="subscribe-section">
+      <p class="subscribe-title">
+        Join our mailing list and never miss an update
+      </p>
+
+      <form [formGroup]="subscribeForm" (ngSubmit)="onSubmit()" novalidate>
+        <div class="input-wrapper">
+          <label for="email">Email *</label>
+          <div class="input-line">
+            <input
+              id="email"
+              type="email"
+              formControlName="email"
+              [class.invalid]="submitted && email?.invalid"
+            />
+            <button type="submit" class="subscribe-button">
+              Subscribe Now
+            </button>
+          </div>
+        </div>
+
+        <div class="error-container" *ngIf="submitted && email?.invalid">
+          <div class="error-message" *ngIf="email?.errors?.['required']">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+              <path
+                fill-rule="evenodd"
+                d="M11.5,3 C16.187,3 20,6.813 20,11.5 C20,16.187 16.187,20 11.5,20 C6.813,20 3,16.187 3,11.5 C3,6.813 6.813,3 11.5,3 Z M11.5,4 C7.364,4 4,7.364 4,11.5 C4,15.636 7.364,19 11.5,19 C15.636,19 19,15.636 19,11.5 C19,7.364 15.636,4 11.5,4 Z M12,14 L12,15 L11,15 L11,14 L12,14 Z M12,8 L12,13 L11,13 L11,8 L12,8 Z"
+              ></path>
+            </svg>
+            <span>Enter an email address</span>
+          </div>
+          <div class="error-message" *ngIf="email?.errors?.['email']">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+              <path
+                fill-rule="evenodd"
+                d="M11.5,3 C16.187,3 20,6.813 20,11.5 C20,16.187 16.187,20 11.5,20 C6.813,20 3,16.187 3,11.5 C3,6.813 6.813,3 11.5,3 Z M11.5,4 C7.364,4 4,7.364 4,11.5 C4,15.636 7.364,19 11.5,19 C15.636,19 19,15.636 19,11.5 C19,7.364 15.636,4 11.5,4 Z M12,14 L12,15 L11,15 L11,14 L12,14 Z M12,8 L12,13 L11,13 L11,8 L12,8 Z"
+              ></path>
+            </svg>
+            <span>Enter an email address like {{ exampleEmail }}</span>
+          </div>
+        </div>
+
+        <div class="checkbox-wrapper">
+          <input
+            id="subscribeCheck"
+            type="checkbox"
+            formControlName="subscribeCheck"
+          />
+          <label for="subscribeCheck"
+            >Yes, subscribe me to your newsletter. *</label
+          >
+        </div>
+
+        <div
+          class="error-container"
+          *ngIf="submitted && subscribeCheck?.invalid"
+        >
+          <div class="error-message">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+              <path
+                fill-rule="evenodd"
+                d="M11.5,3 C16.187,3 20,6.813 20,11.5 C20,16.187 16.187,20 11.5,20 C6.813,20 3,16.187 3,11.5 C3,6.813 6.813,3 11.5,3 Z M11.5,4 C7.364,4 4,7.364 4,11.5 C4,15.636 7.364,19 11.5,19 C15.636,19 19,15.636 19,11.5 C19,7.364 15.636,4 11.5,4 Z M12,14 L12,15 L11,15 L11,14 L12,14 Z M12,8 L12,13 L11,13 L11,8 L12,8 Z"
+              ></path>
+            </svg>
+            <span>Check the box to continue.</span>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="rights-container">
+    <p>
+      © 2035 by Tote. Powered and secured by
+      <a class="a-underline" href="#">Wix</a>
+    </p>
+  </div>
+</footer>
