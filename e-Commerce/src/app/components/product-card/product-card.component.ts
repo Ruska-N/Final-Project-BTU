@@ -18,6 +18,6 @@ export class ProductCardComponent {
 
   onAddToCart(event: Event): void {
     event.stopPropagation();
-    this.cartService.addToCart(this.product);
+    this.cartService.addToCart(this.product, this.product.colors[0]);
   }
 }

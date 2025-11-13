@@ -23,4 +23,20 @@ export class ProductService {
       map((products) => products.find((p) => p.id === id))
     );
   }
+
+
+  getTopSellers(): Observable<Product[]> {
+    return this.getProducts().pipe(
+      map(products => products.filter(p => p.isTopSeller)) 
+    );
+  }
+
+  searchProducts(query: string): Observable<Product[]> {
+    const lowerQuery = query.toLowerCase().trim();
+    return this.getProducts().pipe(
+      map(products =>
+        products.filter(p => p.name.toLowerCase().includes(lowerQuery))
+      )
+    );
+  }
 }

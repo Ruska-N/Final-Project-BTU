@@ -1,61 +1,105 @@
+// src/app/services/cart.service.ts
+
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { CartItem } from '../interfaces/cart-item.interface';
+import { map, shareReplay } from 'rxjs/operators';
+import { CartItem } from '../interfaces/cart-item.interface'; 
 import { Product } from '../interfaces/product.interface';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class CartService {
-  private cartItems = new BehaviorSubject<CartItem[]>([]);
-  cartItems$ = this.cartItems.asObservable();
+  private STORAGE_KEY = 'my_app_cart_items';
+  private itemsSubject = new BehaviorSubject<CartItem[]>(this.getInitialItems());
+  
+  public items$: Observable<CartItem[]> = this.itemsSubject.asObservable();
 
-  private isCartOpen = new BehaviorSubject<boolean>(false);
-  isCartOpen$ = this.isCartOpen.asObservable();
+  private isOpenSubject = new BehaviorSubject<boolean>(false);
+  
+  public isOpen$: Observable<boolean> = this.isOpenSubject.asObservable();
 
-  addToCart(product: Product, quantity: number = 1): void {
-    const currentItems = this.cartItems.getValue();
-    const existingItem = currentItems.find((item) => item.id === product.id);
+  public totalItems$: Observable<number> = this.items$.pipe(
+    map(items => items.reduce((acc, item) => acc + item.quantity, 0)),
+    shareReplay(1) 
+  );
+
+  public totalPrice$: Observable<number> = this.items$.pipe(
+    map(items => items.reduce((acc, item) => acc + (item.product.price * item.quantity), 0)),
+    shareReplay(1)
+  );
+
+  constructor() { }
+
+  
+  private saveState(items: CartItem[]): void {
+    localStorage.setItem(this.STORAGE_KEY, JSON.stringify(items));
+  }
+  private getInitialItems(): CartItem[] {
+    try {
+      const savedItems = localStorage.getItem(this.STORAGE_KEY);
+      return savedItems ? JSON.parse(savedItems) : [];
+    } catch (e) {
+      console.error("Error reading cart from localStorage", e);
+      localStorage.removeItem(this.STORAGE_KEY);
+      return [];
+    }
+  }
+  
+  public toggleCart(): void {
+    this.isOpenSubject.next(!this.isOpenSubject.value);
+  }
+
+ 
+  public setCartOpen(isOpen: boolean): void {
+    this.isOpenSubject.next(isOpen);
+  }
+  
+ 
+  public addToCart(product: Product, color: string): void {
+    const currentItems = this.itemsSubject.getValue();
+    const existingItem = currentItems.find(
+      i => i.product.id === product.id && i.color === color
+    );
 
     if (existingItem) {
-      existingItem.quantity += quantity;
+      existingItem.quantity++;
     } else {
-      currentItems.push({ ...product, quantity });
+      const newItem: CartItem = {
+        id: `${product.id}-${color}`, 
+        product: product,
+        color: color,
+        quantity: 1
+      };
+      currentItems.push(newItem);
     }
-    this.cartItems.next([...currentItems]);
+
+const newItems = [...currentItems]; 
+this.itemsSubject.next(newItems);
+this.saveState(newItems); 
+
+this.setCartOpen(true);
   }
 
-  removeFromCart(productId: number): void {
-    const currentItems = this.cartItems
-      .getValue()
-      .filter((item) => item.id !== productId);
-    this.cartItems.next(currentItems);
+  public updateQuantity(cartId: string, newQuantity: number): void {
+    const currentItems = this.itemsSubject.getValue();
+    const itemToUpdate = currentItems.find(i => i.id === cartId);
+
+    if (itemToUpdate) {
+      itemToUpdate.quantity = newQuantity;
+    }
+
+    if (newQuantity <= 0) {
+      this.removeFromCart(cartId);
+    } else {
+      this.itemsSubject.next([...currentItems]);
+    }
   }
 
-  getCartItemCount(): Observable<number> {
-    return this.cartItems$.pipe(
-      map((items) => items.reduce((count, item) => count + item.quantity, 0))
-    );
-  }
-
-  getCartTotal(): Observable<number> {
-    return this.cartItems$.pipe(
-      map((items) =>
-        items.reduce(
-          (total, item) =>
-            total + (item.sale_price ?? item.price) * item.quantity,
-          0
-        )
-      )
-    );
-  }
-
-  toggleCart(): void {
-    this.isCartOpen.next(!this.isCartOpen.getValue());
-  }
-
-  closeCart(): void {
-    this.isCartOpen.next(false);
+  public removeFromCart(cartId: string): void {
+    const currentItems = this.itemsSubject.getValue();
+    const updatedItems = currentItems.filter(i => i.id !== cartId);
+    this.itemsSubject.next(updatedItems);
+    this.saveState(updatedItems);
   }
 }
