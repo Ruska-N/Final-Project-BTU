@@ -4,6 +4,7 @@ import { ProductDetailsPageComponent } from './pages/product-details-page/produc
 import { GiftCardPageComponent } from './pages/gift-card-page/gift-card-page.component';
 import { ContactPageComponent } from './pages/contact-page/contact-page.component';
 import { FaqPageComponent } from './pages/faq-page/faq-page.component';
+import { SearchResultsComponent } from './components/search-results/search-results.component';
 
 export const routes: Routes = [
   {
@@ -30,6 +31,10 @@ export const routes: Routes = [
     path: 'faq',
     component: FaqPageComponent,
     title: 'FAQ',
+  },
+  { 
+    path: 'search', 
+    component: SearchResultsComponent 
   },
   {
     path: '**',

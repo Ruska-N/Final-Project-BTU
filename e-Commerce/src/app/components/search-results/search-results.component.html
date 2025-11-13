@@ -1,1 +1,78 @@
-<p>search-results works!</p>
+<div class="search-page-container">
+  <h1>Search Results</h1>
+
+  <div class="search-bar-container">
+    <span class="material-symbols-outlined">search</span>
+    <input
+      type="search"
+      placeholder="Search..."
+      [(ngModel)]="searchQuery"
+      (ngModelChange)="onSearchChange()"
+    />
+  </div>
+
+  <div class="main-content">
+    <aside class="filter-sidebar">
+      <h2>Filter by</h2>
+      <div class="filter-group">
+        <h3>Price</h3>
+        <div class="price-inputs">
+          <div class="price-field">
+            <label>Min</label>
+            <input
+              type="number"
+              [(ngModel)]="minPrice"
+              (ngModelChange)="onFilterChange()"
+              [min]="sliderMin"
+              [max]="maxPrice"
+            />
+          </div>
+          <div class="price-field">
+            <label>Max</label>
+            <input
+              type="number"
+              [(ngModel)]="maxPrice"
+              (ngModelChange)="onFilterChange()"
+              [min]="minPrice"
+              [max]="sliderMax"
+            />
+          </div>
+        </div>
+      </div>
+    </aside>
+    <main class="product-grid-container">
+      <div class="grid-header">
+        <span>{{ filteredProducts.length }} products</span>
+
+        <select
+          class="sort-dropdown"
+          [(ngModel)]="sortBy"
+          (ngModelChange)="onFilterChange()"
+        >
+          <option value="bestMatch">Sort by: Best Match</option>
+          <option value="newest">Sort by: Newest</option>
+          <option value="priceAsc">Sort by: Price (low to high)</option>
+          <option value="priceDesc">Sort by: Price (high to low)</option>
+          <option value="nameAsc">Sort by: Name A-Z</option>
+          <option value="nameDesc">Sort by: Name Z-A</option>
+        </select>
+      </div>
+
+      <div
+        class="product-grid"
+        *ngIf="filteredProducts.length > 0; else noResults"
+      >
+        <app-product-card
+          *ngFor="let product of filteredProducts"
+          [product]="product"
+        ></app-product-card>
+      </div>
+
+      <ng-template #noResults>
+        <div class="no-results">
+          <p>No products found matching your criteria.</p>
+        </div>
+      </ng-template>
+    </main>
+  </div>
+</div>
