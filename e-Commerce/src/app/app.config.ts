@@ -5,10 +5,8 @@ import { routes } from './app.routes';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    // Провайдер для роутинга
     provideRouter(routes),
 
-    // Провайдер для HTTP-запросов (HttpClient)
     provideHttpClient(withFetch()),
   ],
 };

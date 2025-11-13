@@ -1,5 +1,9 @@
 import { Product } from './product.interface';
 
-export interface CartItem extends Product {
+
+export interface CartItem {
+  id: string;
+  product: Product;
+  color: string;
   quantity: number;
 }

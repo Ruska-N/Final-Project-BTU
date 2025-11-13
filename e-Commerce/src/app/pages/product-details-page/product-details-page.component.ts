@@ -87,7 +87,7 @@ export class ProductDetailsPageComponent implements OnInit {
   }
 
   onAddToCart(product: Product): void {
-    this.cartService.addToCart(product, this.quantity);
+    this.cartService.addToCart(product, this.selectedColor);
   }
 
   toggleAccordion(section: string): void {

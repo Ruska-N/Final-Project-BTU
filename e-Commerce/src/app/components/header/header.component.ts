@@ -6,6 +6,8 @@ import { FormsModule } from '@angular/forms';
 import { ProductCardComponent } from "../product-card/product-card.component";
 import { Product } from '../../interfaces/product.interface';
 import { ProductService } from '../../services/product.service';
+import { Observable } from 'rxjs';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-header',
@@ -21,12 +23,20 @@ export class HeaderComponent implements OnInit {
   trendingProducts: Product[] = [];
   filteredProducts: Product[] = [];
 
-  constructor(private productService: ProductService, private router: Router) {}
+  public totalItems$!: Observable<number>;
+
+  constructor(private productService: ProductService, private router: Router, private cartService: CartService) {}
 
   ngOnInit() {
     this.loadTrendingProducts();
+
+    this.totalItems$ = this.cartService.totalItems$;
   }
 
+  public onCartClick(): void {
+    this.cartService.toggleCart();
+  }
+  
   openOverlay() { this.overlayOpen = true; }
   closeOverlay() { this.overlayOpen = false; }
 

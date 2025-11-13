@@ -54,7 +54,9 @@
           ></app-product-card>
         </div>
 
-        <button class="show-all-btn" (click)="goToSearchResults()">Show All Results</button>
+        <button class="show-all-btn" (click)="goToSearchResults()">
+          Show All Results
+        </button>
       </div>
     </div>
 
@@ -63,8 +65,11 @@
       <a href=""> Log In</a>
     </div>
 
-    <div class="cart-icon">
-      <span class="material-symbols-outlined"> local_mall </span>
+    <div class="cart-icon" (click)="onCartClick()">
+      <span class="material-symbols-outlined"> shopping_bag </span>
+      <span class="cart-badge" *ngIf="(totalItems$ | async) as total">
+    {{ total }}
+  </span>
     </div>
   </div>
 </div>
