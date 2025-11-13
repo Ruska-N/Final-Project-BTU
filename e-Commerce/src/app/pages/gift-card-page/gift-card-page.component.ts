@@ -6,6 +6,8 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { CartService } from '../../services/cart.service';
+import { Product } from '../../interfaces/product.interface';
 
 @Component({
   selector: 'app-gift-card-page',
@@ -19,7 +21,7 @@ export class GiftCardPageComponent implements OnInit {
   amounts: number[] = [25, 50, 100, 150, 200];
   submitted = false;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private cartService: CartService) {}
 
   ngOnInit(): void {
     this.giftCardForm = this.fb.group({
@@ -93,11 +95,40 @@ export class GiftCardPageComponent implements OnInit {
     return `${today.getFullYear()}-${month}-${day}`;
   }
 
-  onSubmit(): void {
+  addToCart(): void {
     this.submitted = true;
     if (this.giftCardForm.valid) {
-      console.log('Form Submitted', this.giftCardForm.value);
-      alert('Gift card added to cart!');
+      const formValue = this.giftCardForm.value;
+      const giftCardProduct: Product = {
+        id: -1,
+        name: 'eGift Card',
+        price: formValue.amount,
+        image_url: [
+          'https://static.wixstatic.com/media/e90a2a_c3de803545f340df9dd4aa88a72e0718~mv2.png/v1/fill/w_90,h_90,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/e90a2a_c3de803545f340df9dd4aa88a72e0718~mv2.png',
+        ],
+        description: 'A gift of choice.',
+        sku: 'GIFT-CARD',
+        colors: [],
+        quantity_in_stock: 999,
+      };
+
+      const details = {
+        quantity: formValue.quantity,
+        recipientName: formValue.recipientName || 'N/A',
+        recipientEmail: formValue.recipientEmail,
+        deliveryDate: formValue.deliveryDate,
+        message: formValue.message || 'No message.',
+      };
+
+      if (formValue.recipientType === 'forMyself') {
+        details.recipientEmail = 'For myself';
+        details.recipientName = '';
+        details.deliveryDate = '';
+        details.message = '';
+      }
+
+      this.cartService.addGiftCardToCart(giftCardProduct, details);
+
       this.submitted = false;
       this.giftCardForm.reset({
         amount: 25,

@@ -282,3 +282,25 @@
   font-weight: 600;
   cursor: pointer;
 }
+
+.gift-card-details {
+  font-size: 14px;
+  color: #555;
+  margin-top: 8px;
+}
+
+.gift-card-details p {
+  margin: 4px 0 !important;
+  font-size: 14px !important;
+  font-weight: normal !important;
+}
+
+.show-more-btn {
+  background: none;
+  border: none;
+  color: #000;
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 5px 0;
+  font-size: 14px;
+}

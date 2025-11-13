@@ -1,19 +1,38 @@
 <div class="cart-page-container">
-
-  <ng-container *ngIf="(items$ | async) as items; else emptyCart">
-
-    <div class="cart-details">
+  <ng-container *ngIf="items$ | async as items; else emptyCart">
+    <div class="cart-details" *ngIf="items.length > 0">
       <h1>My cart</h1>
-      
+
       <div class="cart-items-list">
         <div *ngFor="let item of items" class="cart-item">
-          
-          <img [src]="item.product.image_url[0]" [alt]="item.product.name" class="item-image">
-          
+          <img
+            [src]="item.product.image_url[0]"
+            [alt]="item.product.name"
+            class="item-image"
+          />
+
           <div class="item-info">
             <h4>{{ item.product.name }}</h4>
-            <p>{{ item.product.price | currency:'USD' }}</p>
-            <p>Color: {{ item.color }}</p>
+
+            <ng-container *ngIf="!item.recipientEmail">
+              <p>{{ item.product.price | currency : "USD" }}</p>
+              <p>Color: {{ item.color }}</p>
+            </ng-container>
+
+            <!-- for giftcard -->
+            <ng-container *ngIf="item.recipientEmail">
+              <p>{{ item.product.price | currency }}</p>
+              <button class="show-more-btn" (click)="toggleShowMore(item.id)">
+                {{ expandedGiftCards[item.id] ? "Show Less" : "Show More" }}
+              </button>
+              <div *ngIf="expandedGiftCards[item.id]" class="gift-card-details">
+                <p *ngIf="item.recipientName">
+                  Recipient Name: {{ item.recipientName }}
+                </p>
+                <p>Recipient Email: {{ item.recipientEmail }}</p>
+                <p *ngIf="item.message">Message: {{ item.message }}</p>
+              </div>
+            </ng-container>
           </div>
 
           <div class="item-quantity">
@@ -25,15 +44,24 @@
           </div>
 
           <div class="item-total">
-            <p>{{ (item.product.price * item.quantity) | currency:'USD' }}</p>
+            <p>{{ item.product.price * item.quantity | currency : "USD" }}</p>
           </div>
 
           <div class="item-remove">
             <button class="trash-btn" (click)="onRemoveItem(item.id)">
-              <span class="material-symbols-outlined">delete</span>
+              <svg
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                width="24"
+                height="24"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M13.5,3 C14.327,3 15,3.673 15,4.5 L15,4.5 L15,5 L19,5 L19,6 L18,6 L18,17.5 C18,18.879 16.878,20 15.5,20 L15.5,20 L7.5,20 C6.122,20 5,18.879 5,17.5 L5,17.5 L5,6 L4,6 L4,5 L8,5 L8,4.5 C8,3.673 8.673,3 9.5,3 L9.5,3 Z M17,6 L6,6 L6,17.5 C6,18.327 6.673,19 7.5,19 L7.5,19 L15.5,19 C16.327,19 17,18.327 17,17.5 L17,17.5 L17,6 Z M10,9 L10,16 L9,16 L9,9 L10,9 Z M14,9 L14,16 L13,16 L13,9 L14,9 Z M13.5,4 L9.5,4 C9.224,4 9,4.225 9,4.5 L9,4.5 L9,5 L14,5 L14,4.5 C14,4.225 13.776,4 13.5,4 L13.5,4 Z"
+                ></path>
+              </svg>
             </button>
           </div>
-
         </div>
       </div>
 
@@ -46,7 +74,7 @@
             </a>
           </div>
           <div class="action-input-area" *ngIf="promoCodeVisible">
-            <input type="text" placeholder="Enter promo code">
+            <input type="text" placeholder="Enter promo code" />
             <button class="apply-btn">Apply</button>
           </div>
         </div>
@@ -63,13 +91,13 @@
           </div>
         </div>
       </div>
-
-    </div> <div class="order-summary" *ngIf="items.length > 0">
+    </div>
+    <div class="order-summary" *ngIf="items.length > 0">
       <h2>Order summary</h2>
 
       <div class="summary-row">
         <span>Subtotal</span>
-        <span>{{ totalPrice$ | async | currency:'USD' }}</span>
+        <span>{{ totalPrice$ | async | currency : "USD" }}</span>
       </div>
 
       <div class="summary-row">
@@ -78,17 +106,33 @@
 
       <div class="summary-total">
         <span>Total</span>
-        <strong>{{ totalPrice$ | async | currency:'USD' }}</strong>
+        <strong>{{ totalPrice$ | async | currency : "USD" }}</strong>
       </div>
 
       <button class="checkout-btn">Checkout</button>
-      
+
       <div class="secure-checkout">
-        <span class="material-symbols-outlined">lock</span>
+        <svg
+          width="11"
+          height="14"
+          viewBox="0 0 11 14"
+          xmlns="http://www.w3.org/2000/svg"
+          class="QXycij"
+          data-hook="SecureCheckoutDataHook.lock"
+        >
+          <g fill="currentColor" fill-rule="evenodd">
+            <path
+              d="M0 12.79c0 .558.445 1.01.996 1.01h9.008A1 1 0 0 0 11 12.79V6.01c0-.558-.445-1.01-.996-1.01H.996A1 1 0 0 0 0 6.01v6.78Z"
+            ></path>
+            <path
+              d="M9.5 5v-.924C9.5 2.086 7.696.5 5.5.5c-2.196 0-4 1.586-4 3.576V5h1v-.924c0-1.407 1.33-2.576 3-2.576s3 1.17 3 2.576V5h1Z"
+              fill-rule="nonzero"
+            ></path>
+          </g>
+        </svg>
         <span>Secure Checkout</span>
       </div>
     </div>
-
   </ng-container>
 
   <ng-template #emptyCart>
@@ -98,5 +142,4 @@
       <a routerLink="/" class="continue-shopping-btn">Continue Shopping</a>
     </div>
   </ng-template>
-
 </div>

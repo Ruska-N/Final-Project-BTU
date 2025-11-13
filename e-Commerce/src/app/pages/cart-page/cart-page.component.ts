@@ -8,25 +8,27 @@ import { CartItem } from '../../interfaces/cart-item.interface';
 @Component({
   selector: 'app-cart-page',
   standalone: true,
-  imports: [
-    CommonModule,
-    RouterModule
-  ],
+  imports: [CommonModule, RouterModule],
   templateUrl: './cart-page.component.html',
-  styleUrls: ['./cart-page.component.css']
+  styleUrls: ['./cart-page.component.css'],
 })
 export class CartPageComponent implements OnInit {
-
   public items$!: Observable<CartItem[]>;
   public totalPrice$!: Observable<number>;
   public promoCodeVisible: boolean = false;
   public noteVisible: boolean = false;
 
-  constructor(private cartService: CartService) { }
+  public expandedGiftCards: { [key: string]: boolean } = {};
+
+  constructor(private cartService: CartService) {}
 
   ngOnInit(): void {
     this.items$ = this.cartService.items$;
     this.totalPrice$ = this.cartService.totalPrice$;
+  }
+
+  public toggleShowMore(itemId: string): void {
+    this.expandedGiftCards[itemId] = !this.expandedGiftCards[itemId];
   }
 
   public onIncrement(item: CartItem): void {

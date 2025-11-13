@@ -7,25 +7,31 @@ import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-side-cart',
+  standalone: true,
   imports: [CommonModule],
   templateUrl: './side-cart.component.html',
-  styleUrls: ['./side-cart.component.css']
+  styleUrls: ['./side-cart.component.css'],
 })
 export class SideCartComponent implements OnInit {
-
   public isOpen$!: Observable<boolean>;
   public items$!: Observable<CartItem[]>;
   public totalPrice$!: Observable<number>;
   public totalItems$!: Observable<number>;
   public promoCodeVisible: boolean = false;
 
-  constructor(private cartService: CartService, private router: Router) { }
+  public expandedGiftCards: { [key: string]: boolean } = {};
+
+  constructor(private cartService: CartService, private router: Router) {}
 
   ngOnInit(): void {
     this.isOpen$ = this.cartService.isOpen$;
     this.items$ = this.cartService.items$;
     this.totalPrice$ = this.cartService.totalPrice$;
     this.totalItems$ = this.cartService.totalItems$;
+  }
+
+  public toggleShowMore(itemId: string): void {
+    this.expandedGiftCards[itemId] = !this.expandedGiftCards[itemId];
   }
 
   public onViewCart(): void {

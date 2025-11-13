@@ -8,7 +8,7 @@
 
   <div class="form-column">
     <h1 class="title">eGift Card</h1>
-    <form [formGroup]="giftCardForm" (ngSubmit)="onSubmit()" novalidate>
+    <form [formGroup]="giftCardForm" (ngSubmit)="addToCart()" novalidate>
       <p class="price">{{ giftCardForm.get("amount")?.value | currency }}</p>
       <p class="description">
         You can't go wrong with a gift card. Choose an amount and write a
@@ -106,7 +106,7 @@
             />
             @if (submitted && recipientEmail?.invalid) {
             <div class="error-icon-container">
-         ა
+              <!-- Error Icon Here -->
               <div class="error-message">
                 @if (recipientEmail?.errors?.['required']) { Enter an email
                 address } @if (recipientEmail?.errors?.['email']) { Enter a

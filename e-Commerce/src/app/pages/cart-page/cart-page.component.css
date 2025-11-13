@@ -35,10 +35,12 @@ h1 {
 .item-info {
   flex: 1;
 }
+
 .item-info h4 {
   margin: 0 0 5px;
   font-size: 18px;
 }
+
 .item-info p {
   margin: 2px 0;
   font-size: 15px;
@@ -51,6 +53,7 @@ h1 {
   border: 1px solid #ccc;
   width: fit-content;
 }
+
 .quantity-controls button {
   background: none;
   border: none;
@@ -58,6 +61,7 @@ h1 {
   padding: 4px 12px;
   font-size: 18px;
 }
+
 .quantity-controls span {
   padding: 4px 12px;
   font-size: 16px;
@@ -80,6 +84,7 @@ h1 {
 .cart-actions {
   margin-top: 20px;
 }
+
 .action-toggle a {
   display: flex;
   align-items: center;
@@ -89,11 +94,13 @@ h1 {
   font-size: 15px;
   margin-bottom: 15px;
 }
+
 .action-input-area {
   display: flex;
   gap: 8px;
   margin-bottom: 20px;
 }
+
 .action-input-area input,
 .action-input-area textarea {
   flex-grow: 1;
@@ -101,10 +108,12 @@ h1 {
   padding: 12px;
   font-size: 0.9rem;
 }
+
 .action-input-area textarea {
   min-height: 80px;
   resize: vertical;
 }
+
 .action-input-area .apply-btn {
   border: 1px solid #000;
   background: #000;
@@ -134,6 +143,7 @@ h1 {
   margin-bottom: 15px;
   font-size: 16px;
 }
+
 .summary-row a {
   color: #000;
   text-decoration: underline;
@@ -175,14 +185,38 @@ h1 {
   text-align: center;
   padding: 50px 0;
 }
+
 .empty-cart-container p {
   font-size: 1.2rem;
   margin: 20px 0;
 }
+
 .continue-shopping-btn {
   background-color: #000;
   color: #fff;
   padding: 12px 24px;
   text-decoration: none;
   font-weight: 600;
+}
+
+.gift-card-details {
+  font-size: 14px;
+  color: #555;
+  margin-top: 8px;
+}
+
+.gift-card-details p {
+  margin: 4px 0 !important;
+  font-size: 14px !important;
+  font-weight: normal !important;
+}
+
+.show-more-btn {
+  background: none;
+  border: none;
+  color: #000;
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 5px 0;
+  font-size: 14px;
 }

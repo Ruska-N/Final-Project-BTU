@@ -40,10 +40,31 @@
           <div class="item-details">
             <div>
               <h4>{{ item.product.name }}</h4>
-              <p class="item-single-price">
-                {{ item.product.price | currency : "USD" }}
-              </p>
-              <p>Color: {{ item.color }}</p>
+
+              <ng-container *ngIf="!item.recipientEmail">
+                <p class="item-single-price">
+                  {{ item.product.price | currency : "USD" }}
+                </p>
+                <p>Color: {{ item.color }}</p>
+              </ng-container>
+
+              <!-- Gift Card Details -->
+              <ng-container *ngIf="item.recipientEmail">
+                <p>Amount: {{ item.product.price | currency }}</p>
+                <button class="show-more-btn" (click)="toggleShowMore(item.id)">
+                  {{ expandedGiftCards[item.id] ? "Show Less" : "Show More" }}
+                </button>
+                <div
+                  *ngIf="expandedGiftCards[item.id]"
+                  class="gift-card-details"
+                >
+                  <p *ngIf="item.recipientName">
+                    Recipient Name: {{ item.recipientName }}
+                  </p>
+                  <p>Recipient Email: {{ item.recipientEmail }}</p>
+                  <p *ngIf="item.message">Message: {{ item.message }}</p>
+                </div>
+              </ng-container>
             </div>
 
             <div class="quantity-controls">
