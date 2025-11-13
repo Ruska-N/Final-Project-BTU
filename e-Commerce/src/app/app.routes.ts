@@ -2,7 +2,8 @@ import { Routes } from '@angular/router';
 import { ShopPageComponent } from './pages/shop-page/shop-page.component';
 import { ProductDetailsPageComponent } from './pages/product-details-page/product-details-page.component';
 import { GiftCardPageComponent } from './pages/gift-card-page/gift-card-page.component';
-import { ContactPageComponent } from './pages/contact-page/contact-page.component'; // Импортируйте компонент
+import { ContactPageComponent } from './pages/contact-page/contact-page.component';
+import { FaqPageComponent } from './pages/faq-page/faq-page.component';
 
 export const routes: Routes = [
   {
@@ -24,6 +25,11 @@ export const routes: Routes = [
     path: 'contact', 
     component: ContactPageComponent,
     title: 'Contact Us',
+  },
+  {
+    path: 'faq',
+    component: FaqPageComponent,
+    title: 'FAQ',
   },
   {
     path: '**',

@@ -1,1 +1,70 @@
-<p>header works!</p>
+<div class="header">
+  <div class="logo">
+    <a href="index.html">
+      <h1>Tote</h1>
+    </a>
+    <a href="index.html">
+      <h2>Funky Printed Bags</h2>
+    </a>
+  </div>
+
+  <nav>
+    <ul>
+      <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+        <a routerLink="/">Shop</a>
+      </li>
+      <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+        <a href="">About</a>
+      </li>
+      <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+        <a routerLink="faq">FAQ</a>
+      </li>
+      <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+        <a routerLink="gift-card">Gift Card</a>
+      </li>
+      <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+        <a routerLink="contact">Contact</a>
+      </li>
+    </ul>
+  </nav>
+
+  <div class="header-features">
+    <button class="search-btn" (click)="openOverlay()">
+      <span class="material-symbols-outlined">search</span>
+      <span>Search</span>
+    </button>
+
+    <div class="search-overlay" *ngIf="overlayOpen" (click)="closeOverlay()">
+      <div class="overlay-content" (click)="$event.stopPropagation()">
+        <div class="overlay-search-bar">
+          <input
+            type="text"
+            placeholder="Search"
+            [(ngModel)]="searchQuery"
+            (input)="filterProducts()"
+          />
+          <button class="close-btn" (click)="closeOverlay()">Close</button>
+        </div>
+
+        <h2>Trending Products</h2>
+        <div class="product-cards">
+          <app-product-card
+            *ngFor="let product of filteredProducts"
+            [product]="product"
+          ></app-product-card>
+        </div>
+
+        <button class="show-all-btn" (click)="goToSearchResults()">Show All Results</button>
+      </div>
+    </div>
+
+    <div class="user-log">
+      <span class="material-symbols-outlined"> account_circle </span>
+      <a href=""> Log In</a>
+    </div>
+
+    <div class="cart-icon">
+      <span class="material-symbols-outlined"> local_mall </span>
+    </div>
+  </div>
+</div>
