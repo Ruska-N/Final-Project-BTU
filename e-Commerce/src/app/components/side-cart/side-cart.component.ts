@@ -18,6 +18,7 @@ export class SideCartComponent implements OnInit {
   public items$!: Observable<CartItem[]>;
   public totalPrice$!: Observable<number>;
   public totalItems$!: Observable<number>;
+  public promoCodeVisible: boolean = false;
 
   constructor(private cartService: CartService) { }
 
@@ -26,6 +27,10 @@ export class SideCartComponent implements OnInit {
     this.items$ = this.cartService.items$;
     this.totalPrice$ = this.cartService.totalPrice$;
     this.totalItems$ = this.cartService.totalItems$;
+  }
+
+  public togglePromoCode(): void {
+    this.promoCodeVisible = !this.promoCodeVisible;
   }
 
   public closeCart(): void {

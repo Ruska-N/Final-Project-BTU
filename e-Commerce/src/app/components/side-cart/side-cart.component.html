@@ -1,18 +1,16 @@
-<div 
-  class="cart-overlay" 
-  [class.is-open]="(isOpen$ | async)" 
-  (click)="closeCart()">
-</div>
+<div
+  class="cart-overlay"
+  [class.is-open]="isOpen$ | async"
+  (click)="closeCart()"
+></div>
 
-<div class="cart-panel" [class.is-open]="(isOpen$ | async)">
-  
+<div class="cart-panel" [class.is-open]="isOpen$ | async">
   <div class="cart-header">
     <h3>Cart ({{ (totalItems$ | async) || 0 }} items)</h3>
     <button class="close-btn" (click)="closeCart()">&times;</button>
   </div>
 
-  <ng-container *ngIf="(items$ | async) as items">
-
+  <ng-container *ngIf="items$ | async as items">
     <div class="cart-body">
       <div *ngIf="items.length === 0; else itemsList" class="empty-cart">
         <p>Your cart is empty.</p>
@@ -20,12 +18,21 @@
 
       <ng-template #itemsList>
         <div *ngFor="let item of items" class="cart-item">
-          
-          <img [src]="item.product.image_url[0]" [alt]="item.product.name" class="item-image">
-          
+          <img
+            [src]="item.product.image_url[0]"
+            [alt]="item.product.name"
+            class="item-image"
+          />
+
           <div class="item-details">
-            <h4>{{ item.product.name }}</h4>
-            <p>Color: {{ item.color }}</p>
+            <div>
+              <h4>{{ item.product.name }}</h4>
+              <p class="item-single-price">
+                {{ item.product.price | currency : "USD" }}
+              </p>
+              <p>Color: {{ item.color }}</p>
+            </div>
+
             <div class="quantity-controls">
               <button (click)="onDecrement(item)">-</button>
               <span>{{ item.quantity }}</span>
@@ -33,33 +40,41 @@
             </div>
           </div>
 
-          <div class="item-price">
-            <p>${{ (item.product.price * item.quantity) | number:'1.2-2' }}</p>
+          <div class="item-actions">
             <button class="trash-btn" (click)="onRemoveItem(item.id)">
-              
+              <span class="material-symbols-outlined">delete</span>
             </button>
+
+            <p class="item-total-price">
+              {{ item.product.price * item.quantity | currency : "USD" }}
+            </p>
+          </div>
+        </div>
+        <div class="promo-code-container">
+          <div class="promo-toggle" *ngIf="!promoCodeVisible">
+            <a (click)="togglePromoCode()"> <span class="material-symbols-outlined">
+shoppingmode
+</span>Enter a promo code</a>
+          </div>
+          <div class="promo-input-area" *ngIf="promoCodeVisible">
+            <input type="text" placeholder="Enter promo code" />
+            <button class="apply-btn">Apply</button>
           </div>
         </div>
       </ng-template>
     </div>
-
     <div class="cart-footer" *ngIf="items.length > 0">
-      <div class="promo-code">
-        <a href="#">Enter a promo code</a>
-      </div>
-
       <div class="total-summary">
         <span>Estimated total</span>
-        <strong>{{ totalPrice$ | async | currency:'USD' }}</strong>
+        <strong>{{ totalPrice$ | async | currency : "USD" }}</strong>
       </div>
       <p class="disclaimer">Taxes and shipping are calculated at checkout.</p>
-
       <button class="checkout-btn">Checkout</button>
       <button class="view-cart-btn">View Cart</button>
-      
       <div class="secure-checkout">
+        <span class="material-symbols-outlined"> lock </span>
         <span>Secure Checkout</span>
       </div>
     </div>
-
-  </ng-container> </div>
+  </ng-container>
+</div>
