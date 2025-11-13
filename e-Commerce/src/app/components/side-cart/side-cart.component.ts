@@ -1,6 +1,5 @@
-// src/app/components/side-cart/side-cart.component.ts
-
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { CartService } from '../../services/cart.service';
 import { CartItem } from '../../interfaces/cart-item.interface';
@@ -20,13 +19,18 @@ export class SideCartComponent implements OnInit {
   public totalItems$!: Observable<number>;
   public promoCodeVisible: boolean = false;
 
-  constructor(private cartService: CartService) { }
+  constructor(private cartService: CartService, private router: Router) { }
 
   ngOnInit(): void {
     this.isOpen$ = this.cartService.isOpen$;
     this.items$ = this.cartService.items$;
     this.totalPrice$ = this.cartService.totalPrice$;
     this.totalItems$ = this.cartService.totalItems$;
+  }
+
+  public onViewCart(): void {
+    this.router.navigate(['/cart']);
+    this.cartService.setCartOpen(false);
   }
 
   public togglePromoCode(): void {
