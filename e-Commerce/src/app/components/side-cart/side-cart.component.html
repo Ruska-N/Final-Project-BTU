@@ -7,7 +7,20 @@
 <div class="cart-panel" [class.is-open]="isOpen$ | async">
   <div class="cart-header">
     <h3>Cart ({{ (totalItems$ | async) || 0 }} items)</h3>
-    <button class="close-btn" (click)="closeCart()">&times;</button>
+    <button class="close-btn" (click)="closeCart()">
+      <svg
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        width="24"
+        height="24"
+        class="sOnyBDt"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M19.2928932,3.99989322 L20,4.707 L12.7068932,11.9998932 L20,19.2928932 L19.2928932,20 L11.9998932,12.7068932 L4.707,20 L3.99989322,19.2928932 L11.2928932,11.9998932 L3.99989322,4.707 L4.707,3.99989322 L11.9998932,11.2928932 L19.2928932,3.99989322 Z"
+        ></path>
+      </svg>
+    </button>
   </div>
 
   <ng-container *ngIf="items$ | async as items">
@@ -42,7 +55,17 @@
 
           <div class="item-actions">
             <button class="trash-btn" (click)="onRemoveItem(item.id)">
-              <span class="material-symbols-outlined">delete</span>
+              <svg
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                width="24"
+                height="24"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M13.5,3 C14.327,3 15,3.673 15,4.5 L15,4.5 L15,5 L19,5 L19,6 L18,6 L18,17.5 C18,18.879 16.878,20 15.5,20 L15.5,20 L7.5,20 C6.122,20 5,18.879 5,17.5 L5,17.5 L5,6 L4,6 L4,5 L8,5 L8,4.5 C8,3.673 8.673,3 9.5,3 L9.5,3 Z M17,6 L6,6 L6,17.5 C6,18.327 6.673,19 7.5,19 L7.5,19 L15.5,19 C16.327,19 17,18.327 17,17.5 L17,17.5 L17,6 Z M10,9 L10,16 L9,16 L9,9 L10,9 Z M14,9 L14,16 L13,16 L13,9 L14,9 Z M13.5,4 L9.5,4 C9.224,4 9,4.225 9,4.5 L9,4.5 L9,5 L14,5 L14,4.5 C14,4.225 13.776,4 13.5,4 L13.5,4 Z"
+                ></path>
+              </svg>
             </button>
 
             <p class="item-total-price">
@@ -52,9 +75,10 @@
         </div>
         <div class="promo-code-container">
           <div class="promo-toggle" *ngIf="!promoCodeVisible">
-            <a (click)="togglePromoCode()"> <span class="material-symbols-outlined">
-shoppingmode
-</span>Enter a promo code</a>
+            <a (click)="togglePromoCode()">
+              <span class="material-symbols-outlined"> shoppingmode </span>Enter
+              a promo code</a
+            >
           </div>
           <div class="promo-input-area" *ngIf="promoCodeVisible">
             <input type="text" placeholder="Enter promo code" />
@@ -72,7 +96,24 @@ shoppingmode
       <button class="checkout-btn">Checkout</button>
       <button class="view-cart-btn" (click)="onViewCart()">View Cart</button>
       <div class="secure-checkout">
-        <span class="material-symbols-outlined"> lock </span>
+        <svg
+          width="11"
+          height="14"
+          viewBox="0 0 11 14"
+          xmlns="http://www.w3.org/2000/svg"
+          class="QXycij"
+          data-hook="SecureCheckoutDataHook.lock"
+        >
+          <g fill="currentColor" fill-rule="evenodd">
+            <path
+              d="M0 12.79c0 .558.445 1.01.996 1.01h9.008A1 1 0 0 0 11 12.79V6.01c0-.558-.445-1.01-.996-1.01H.996A1 1 0 0 0 0 6.01v6.78Z"
+            ></path>
+            <path
+              d="M9.5 5v-.924C9.5 2.086 7.696.5 5.5.5c-2.196 0-4 1.586-4 3.576V5h1v-.924c0-1.407 1.33-2.576 3-2.576s3 1.17 3 2.576V5h1Z"
+              fill-rule="nonzero"
+            ></path>
+          </g>
+        </svg>
         <span>Secure Checkout</span>
       </div>
     </div>
