@@ -5,7 +5,7 @@ import { GiftCardPageComponent } from './pages/gift-card-page/gift-card-page.com
 import { ContactPageComponent } from './pages/contact-page/contact-page.component';
 import { FaqPageComponent } from './pages/faq-page/faq-page.component';
 import { SearchResultsComponent } from './components/search-results/search-results.component';
-
+import { CartPageComponent } from './pages/cart-page/cart-page.component';
 export const routes: Routes = [
   {
     path: '',
@@ -35,6 +35,10 @@ export const routes: Routes = [
   { 
     path: 'search', 
     component: SearchResultsComponent 
+  },
+  { 
+    path: 'cart', 
+    component: CartPageComponent 
   },
   {
     path: '**',
