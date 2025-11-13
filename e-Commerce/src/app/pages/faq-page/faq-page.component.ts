@@ -10,12 +10,13 @@ interface FaqItem {
 @Component({
   selector: 'app-faq-page',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule], 
   templateUrl: './faq-page.component.html',
   styleUrls: ['./faq-page.component.css'],
 })
 export class FaqPageComponent {
   activeTab: 'general' | 'setup' = 'general';
+  searchTerm: string = '';
 
   generalFaqs: FaqItem[] = [
     {
@@ -61,7 +62,23 @@ export class FaqPageComponent {
   ];
 
   get faqs() {
-    return this.activeTab === 'general' ? this.generalFaqs : this.setupFaqs;
+    const currentFaqs =
+      this.activeTab === 'general' ? this.generalFaqs : this.setupFaqs;
+
+    if (!this.searchTerm.trim()) {
+      return currentFaqs;
+    }
+
+    return currentFaqs.filter(
+      (faq) =>
+        faq.question.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+        faq.answer.toLowerCase().includes(this.searchTerm.toLowerCase())
+    );
+  }
+
+  onSearch(event: Event): void {
+    const target = event.target as HTMLInputElement;
+    this.searchTerm = target.value;
   }
 
   toggleFaq(faq: FaqItem): void {

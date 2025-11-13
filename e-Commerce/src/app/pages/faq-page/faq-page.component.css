@@ -136,7 +136,7 @@
 
 .answer-content p {
     color: #3e3e3e;
-    font-size: 17px;
+    font-size: 15px;
     line-height: 1.6;
     margin: 0;
 }
@@ -162,7 +162,20 @@
     height: 20px;
 }
 
-/* Responsive Styles */
+.no-faqs-found {
+    padding: 40px 0;
+}
+
+.no-faqs-found p {
+    margin: 0;
+    color: #1a1a1a;
+}
+
+.no-faqs-title {
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
 @media (max-width: 768px) {
     .faq-container {
         margin: 30px auto;
