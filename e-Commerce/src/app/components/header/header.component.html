@@ -8,7 +8,7 @@
     </a>
   </div>
 
-  <nav>
+  <nav [class.is-open]="isMobileMenuOpen" (click)="toggleMobileMenu()">
     <ul>
       <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
         <a routerLink="/">Shop</a>
@@ -29,6 +29,13 @@
   </nav>
 
   <div class="header-features">
+    
+    <button class="burger-btn" (click)="toggleMobileMenu()">
+      <span class="material-symbols-outlined">
+        {{ isMobileMenuOpen ? 'close' : 'menu' }}
+      </span>
+    </button>
+
     <button class="search-btn" (click)="openOverlay()">
       <span class="material-symbols-outlined">search</span>
       <span>Search</span>

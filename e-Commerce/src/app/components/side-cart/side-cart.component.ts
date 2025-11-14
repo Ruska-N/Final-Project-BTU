@@ -30,6 +30,11 @@ export class SideCartComponent implements OnInit {
     this.totalItems$ = this.cartService.totalItems$;
   }
 
+  public onCheckout(): void {
+    this.router.navigate(['/checkout']);
+    this.cartService.setCartOpen(false);
+  }
+
   public toggleShowMore(itemId: string): void {
     this.expandedGiftCards[itemId] = !this.expandedGiftCards[itemId];
   }

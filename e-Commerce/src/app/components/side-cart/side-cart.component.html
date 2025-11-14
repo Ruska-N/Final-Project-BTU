@@ -114,7 +114,7 @@
         <strong>{{ totalPrice$ | async | currency : "USD" }}</strong>
       </div>
       <p class="disclaimer">Taxes and shipping are calculated at checkout.</p>
-      <button class="checkout-btn">Checkout</button>
+      <button class="checkout-btn" (click)="onCheckout()">Checkout</button>
       <button class="view-cart-btn" (click)="onViewCart()">View Cart</button>
       <div class="secure-checkout">
         <svg

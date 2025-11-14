@@ -24,6 +24,7 @@ export class HeaderComponent implements OnInit {
   filteredProducts: Product[] = [];
 
   public totalItems$!: Observable<number>;
+  public isMobileMenuOpen: boolean = false;
 
   constructor(private productService: ProductService, private router: Router, private cartService: CartService) {}
 
@@ -31,6 +32,10 @@ export class HeaderComponent implements OnInit {
     this.loadTrendingProducts();
 
     this.totalItems$ = this.cartService.totalItems$;
+  }
+
+  public toggleMobileMenu(): void {
+    this.isMobileMenuOpen = !this.isMobileMenuOpen;
   }
 
   public onCartClick(): void {
