@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { Observable } from 'rxjs';
 import { CartService } from '../../services/cart.service';
 import { CartItem } from '../../interfaces/cart-item.interface';
@@ -20,11 +20,15 @@ export class CartPageComponent implements OnInit {
 
   public expandedGiftCards: { [key: string]: boolean } = {};
 
-  constructor(private cartService: CartService) {}
+  constructor(private cartService: CartService, private router: Router) {}
 
   ngOnInit(): void {
     this.items$ = this.cartService.items$;
     this.totalPrice$ = this.cartService.totalPrice$;
+  }
+
+  public onCheckout(): void {
+    this.router.navigate(['/checkout']);
   }
 
   public toggleShowMore(itemId: string): void {

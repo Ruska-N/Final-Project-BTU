@@ -109,7 +109,7 @@
         <strong>{{ totalPrice$ | async | currency : "USD" }}</strong>
       </div>
 
-      <button class="checkout-btn">Checkout</button>
+      <button class="checkout-btn" (click)="onCheckout()">Checkout</button>
 
       <div class="secure-checkout">
         <svg
